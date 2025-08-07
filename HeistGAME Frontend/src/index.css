@@ -1,0 +1,74 @@
+/* Import the retro pixel font */
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevents scrollbars */
+}
+/* Define the core color palette inspired by the game's theme */
+:root {
+  --color-background: #1a1a1a; /* Dark gray, almost black */
+  --color-background-panel: #2a2a2e; /* Slightly lighter panel background */
+  --color-border: #4a4a50;
+  --color-text: #e0e0e0; /* Light gray text for readability */
+  --color-text-dark: #1a1a1a;
+  
+  --color-primary: #facc15; /* Yellow-400 for primary actions and highlights */
+  --color-primary-hover: #eab308; /* Yellow-500 */
+
+  --color-accent-blue: #3b82f6; /* Blue-500 for Thief/Success */
+  --color-accent-blue-hover: #2563eb; /* Blue-600 */
+  
+  --color-accent-red: #ef4444; /* Red-500 for Agent/Failure */
+  --color-accent-red-hover: #dc2626; /* Red-600 */
+
+  --color-accent-green: #22c55e; /* Green-500 for Approve/Create */
+  --color-accent-green-hover: #16a34a; /* Green-600 */
+}
+
+*{
+  image-rendering: pixelated; /* For Chrome/Opera */
+  image-rendering: crisp-edges; /* For Firefox */
+}
+
+/* Apply base styles to the entire application */
+body {
+  margin: 0;
+  font-family: 'VT323', monospace; /* Use the pixel font */
+  background-color: var(--color-background);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Basic styling for interactive elements */
+button {
+  font-family: 'VT323', monospace;
+  cursor: pointer;
+  border: 2px solid var(--color-border);
+  transition: all 0.2s ease-in-out;
+  padding: 10px 20px;
+  font-size: 1.5rem; /* Larger base font size for buttons */
+  text-transform: uppercase;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+input {
+  font-family: 'VT323', monospace;
+  background-color: var(--color-background-panel);
+  border: 2px solid var(--color-border);
+  color: var(--color-text);
+  padding: 10px;
+  font-size: 1.5rem;
+}
+
+input:focus {
+  outline: 2px solid var(--color-primary);
+  border-color: var(--color-primary);
+}

@@ -1,0 +1,65 @@
+# render.yaml
+# This file defines the services for deploying your game on Render.
+# For more details, see the Render documentation: https://render.com/docs/yaml-spec
+services:
+  # 1. The Redis database (used by Valkey)
+  - type: redis
+    name: valkey-db
+    region: oregon # Or choose a region closer to you
+    plan: free
+    ipAllowList: [] # Allows access from anywhere, which is fine for the free tier
+
+  # 2. The Python FastAPI backend
+  - type: web
+    name: art-heist-backend
+    runtime: docker
+    region: oregon
+    plan: free
+    # Point to the Dockerfile within your backend directory
+    dockerfilePath: ./HeistGAME/Dockerfile
+    dockerContext: ./HeistGAME
+    healthCheckPath: /test-cors # Use a lightweight endpoint for health checks
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11
+      # This links the backend to the Redis database created above
+      - key: VALKEY_HOST
+        fromService:
+          type: redis
+          name: valkey-db
+          property: host
+      - key: VALKEY_PORT
+        fromService:
+          type: redis
+          name: valkey-db
+          property: port
+      # This dynamically gets the URL of your deployed frontend for CORS
+      - key: FRONTEND_URL
+        fromService:
+          type: static
+          name: art-heist-frontend
+          property: url
+
+  # 3. The React Frontend
+  - type: static
+    name: art-heist-frontend
+    region: oregon
+    plan: free
+    # The root directory of your frontend project
+    rootDir: ./HeistGAME Frontend
+    # Commands to build your React app
+    buildCommand: npm install && npm run build
+    # The folder where the build output is located
+    publishPath: ./dist
+    # This rule ensures that client-side routing works correctly
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      # This gives your frontend the URL of your deployed backend API
+      - key: VITE_API_BASE_URL
+        fromService:
+          type: web
+          name: art-heist-backend
+          property: url

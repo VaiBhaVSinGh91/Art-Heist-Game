@@ -1,0 +1,19 @@
+# Python Virtual Environment
+# This will ignore the 'venv' folder you created.
+venv/
+.venv/
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# Testing artifacts
+.pytest_cache/
+.coverage
+
+# IDE-specific folders
+.vscode/
+.idea/
+
+# YoYo AI version control directory
+.yoyo/
