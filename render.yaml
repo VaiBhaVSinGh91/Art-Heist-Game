@@ -36,12 +36,12 @@ services:
       # This dynamically gets the URL of your deployed frontend for CORS
       - key: FRONTEND_URL
         fromService:
-          type: static
+          type: static_site
           name: art-heist-frontend
           property: url
 
   # 3. The React Frontend
-  - type: static
+  - type: static_site
     name: art-heist-frontend
     region: oregon
     plan: free
