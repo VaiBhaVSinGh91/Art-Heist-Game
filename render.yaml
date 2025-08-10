@@ -1,52 +1,28 @@
 services:
-  - type: redis
-    name: valkey-db
-    region: singapore
-    plan: free
-    ipAllowList: []
-
-  - type: web
-    name: art-heist-backend
-    runtime: docker
-    region: singapore
-    plan: free
-    dockerfilePath: ./HeistGAME/Dockerfile
-    dockerContext: ./HeistGAME
-    healthCheckPath: /test-cors
+  # === FRONTEND ===
+  - type: static_site
+    name: heistgame-frontend
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    publishPath: ./dist
     envVars:
+      - key: NODE_VERSION
+        value: 20
+
+  # === BACKEND ===
+  - type: web
+    name: heistgame-backend
+    rootDir: backend
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port 10000
+    envVars:
+      - key: DATABASE_URL
+        value: redis://heistgame-db:6379
       - key: PYTHON_VERSION
         value: 3.11
-      - key: VALKEY_HOST
-        fromService:
-          type: redis
-          name: valkey-db
-          property: host
-      - key: VALKEY_PORT
-        fromService:
-          type: redis
-          name: valkey-db
-          property: port
-      - key: FRONTEND_URL
-        fromService:
-          type: web
-          name: art-heist-frontend
-          property: url
 
-  - type: web
-    name: art-heist-frontend
-    runtime: static
-    region: global
-    plan: free
-    rootDir: "./HeistGAME Frontend"
-    buildCommand: npm install && npm run build
-    publishPath: dist
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
-    envVars:
-      - key: VITE_API_BASE_URL
-        fromService:
-          type: web
-          name: art-heist-backend
-          property: url
+  # === VALKEY (REDIS) ===
+  - type: redis
+    name: heistgame-db
+    ipAllowList: []
