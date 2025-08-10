@@ -1,44 +1,27 @@
-# Python Virtual Environment
-# This will ignore the 'venv' folder you created.
-venv/
-.venv/
-
-# Python cache files
-__pycache__/
-*.pyc
-
-# Testing artifacts
-.pytest_cache/
-.coverage
-
-# IDE-specific folders
-.vscode/
-.idea/
-
 # YoYo AI version control directory
 .yoyo/
 
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+# General
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+.vscode/
+.idea/
+
+# Backend - Python
+/HeistGAME/venv/
+/HeistGAME/.venv/
+/HeistGAME/__pycache__/
+/HeistGAME/.pytest_cache/
+/HeistGAME/.coverage
+
+# Frontend - Node
+/HeistGAME Frontend/node_modules/
+/HeistGAME Frontend/dist/
+/HeistGAME Frontend/npm-debug.log*
+/HeistGAME Frontend/yarn-debug.log*
+/HeistGAME Frontend/yarn-error.log*
+
+# Environment files
+# Ignore all .env files, but not the example template
+/HeistGAME Frontend/.env*
+!/HeistGAME Frontend/.env.example
+
