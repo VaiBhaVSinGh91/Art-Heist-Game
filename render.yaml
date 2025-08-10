@@ -1,14 +1,14 @@
 services:
   - type: redis
     name: valkey-db
-    region: oregon
+    region: singapore
     plan: free
     ipAllowList: []
 
   - type: web
     name: art-heist-backend
     runtime: docker
-    region: oregon
+    region: singapore
     plan: free
     dockerfilePath: ./HeistGAME/Dockerfile
     dockerContext: ./HeistGAME
@@ -28,13 +28,14 @@ services:
           property: port
       - key: FRONTEND_URL
         fromService:
-          type: static
+          type: web
           name: art-heist-frontend
           property: url
 
-  - type: static
+  - type: web
     name: art-heist-frontend
-    region: oregon
+    runtime: static
+    region: global
     plan: free
     rootDir: ./HeistGAME-Frontend
     buildCommand: npm install && npm run build
