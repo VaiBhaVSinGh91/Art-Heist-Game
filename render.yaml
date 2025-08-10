@@ -37,7 +37,7 @@ services:
     runtime: static
     region: global
     plan: free
-    rootDir: ./HeistGAME-Frontend
+    rootDir: "./HeistGAME Frontend"
     buildCommand: npm install && npm run build
     publishPath: ./dist
     routes:
