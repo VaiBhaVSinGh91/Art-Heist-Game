@@ -39,7 +39,7 @@ services:
     plan: free
     rootDir: "./HeistGAME Frontend"
     buildCommand: npm install && npm run build
-    publishPath: ./dist
+    publishPath: dist
     routes:
       - type: rewrite
         source: /*
