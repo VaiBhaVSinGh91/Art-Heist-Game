@@ -4,7 +4,6 @@ services:
     env: static
     name: heistgame-frontend
     plan: free
-    region: singapore
     rootDir: "HeistGAME Frontend"
     buildCommand: npm install && npm run build
     staticPublishPath: dist
