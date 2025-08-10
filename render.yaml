@@ -1,10 +1,10 @@
 services:
   # === FRONTEND ===
-  - type: static_site
+  - type: static
     name: heistgame-frontend
     rootDir: frontend
     buildCommand: npm install && npm run build
-    publishPath: ./dist
+    publishPath: dist
     envVars:
       - key: NODE_VERSION
         value: 20
