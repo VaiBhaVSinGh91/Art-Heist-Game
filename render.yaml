@@ -5,7 +5,7 @@ services:
     name: heistgame-frontend
     rootDir: "HeistGAME Frontend"
     buildCommand: npm install && npm run build
-    publishPath: dist
+    staticPublishPath: dist
     envVars:
       - key: NODE_VERSION
         value: 20
