@@ -1,8 +1,10 @@
 services:
   # === FRONTEND ===
   - type: web
-    env : static
+    env: static
     name: heistgame-frontend
+    plan: free
+    region: singapore
     rootDir: "HeistGAME Frontend"
     buildCommand: npm install && npm run build
     staticPublishPath: dist
@@ -13,6 +15,8 @@ services:
   # === BACKEND ===
   - type: web
     name: heistgame-backend
+    plan: free
+    region: singapore
     runtime: docker
     dockerContext: ./HeistGAME
     dockerfilePath: ./HeistGAME/Dockerfile
@@ -26,4 +30,6 @@ services:
   # === VALKEY (REDIS) ===
   - type: redis
     name: heistgame-db
+    plan: free
+    region: singapore
     ipAllowList: []
