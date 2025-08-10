@@ -1,6 +1,7 @@
 services:
   # === FRONTEND ===
-  - type: static
+  - type: web
+    env : static
     name: heistgame-frontend
     rootDir: "HeistGAME Frontend"
     buildCommand: npm install && npm run build
