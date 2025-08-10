@@ -1,8 +1,8 @@
 services:
   # === FRONTEND ===
-  - type: static
+  - type: static_site
     name: heistgame-frontend
-    rootDir: frontend
+    rootDir: "HeistGAME Frontend"
     buildCommand: npm install && npm run build
     publishPath: dist
     envVars:
@@ -12,15 +12,16 @@ services:
   # === BACKEND ===
   - type: web
     name: heistgame-backend
-    rootDir: backend
-    env: python
-    buildCommand: pip install -r requirements.txt
+    runtime: docker
+    dockerContext: ./HeistGAME
+    dockerfilePath: ./HeistGAME/Dockerfile
     startCommand: uvicorn main:app --host 0.0.0.0 --port 10000
     envVars:
       - key: DATABASE_URL
-        value: redis://heistgame-db:6379
-      - key: PYTHON_VERSION
-        value: 3.11
+        fromService:
+          type: redis
+          name: heistgame-db
+          property: connectionString
 
   # === VALKEY (REDIS) ===
   - type: redis
