@@ -1,6 +1,6 @@
 services:
   # === FRONTEND ===
-  - type: static_site
+  - type: static
     name: heistgame-frontend
     rootDir: "HeistGAME Frontend"
     buildCommand: npm install && npm run build
