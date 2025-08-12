@@ -5,7 +5,7 @@
 
 A real-time, multiplayer web game where players team up to pull off the perfect art heist. Built with a modern tech stack featuring FastAPI, React, and WebSockets for a fast and interactive experience.
 
-**Live Demo:** [**https://heistgame-frontend.onrender.com**](https://heistgame-frontend.onrender.com)
+**Live Demo:** [**https://heistgame-frontend.onrender.com**](https://art-heist-game.onrender.com/)
 
 ## ✨ Features
 
